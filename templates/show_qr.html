@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block eyebrow %}LINK YOUR DEVICE{% endblock %}
+{% block headline %}One scan. <span class="grad">Lasting protection.</span>{% endblock %}
+{% block subtext %}Your authenticator app will generate a new 6-digit code every 30 seconds, tied only to your account.{% endblock %}
+
+{% block steps %}
+<div class="steps">
+    <div class="step">
+        <div class="num">1</div>
+        <div>
+            <p class="step-title">Open your authenticator app</p>
+            <p class="step-desc">Google Authenticator, Authy, or Microsoft Authenticator.</p>
+        </div>
+    </div>
+    <div class="step">
+        <div class="num">2</div>
+        <div>
+            <p class="step-title">Tap "+" and scan</p>
+            <p class="step-desc">Choose "Scan a QR code" from the menu.</p>
+        </div>
+    </div>
+    <div class="step">
+        <div class="num">3</div>
+        <div>
+            <p class="step-title">Point your camera at the code</p>
+            <p class="step-desc">Your account links automatically once scanned.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+    <h2>Scan to link {{ username }}</h2>
+    <p>This code is unique to your account and only needs to be scanned once.</p>
+
+    <div class="qr-frame">
+        <img src="data:image/png;base64,{{ qr_base64 }}" alt="QR Code">
+    </div>
+
+    <a class="btn" style="margin-top:20px" href="{{ url_for('login') }}">I've scanned it — Log in</a>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block eyebrow %}VERIFIED{% endblock %}
+{% block headline %}You're <span class="grad">securely signed in.</span>{% endblock %}
+{% block subtext %}Two-factor authentication passed. This session is protected end-to-end.{% endblock %}
+
+{% block content %}
+    <div class="status-badge"><span class="dot"></span>VERIFIED</div>
+    <h2>Welcome, {{ user }}</h2>
+    <p>Two-factor authentication passed. You're securely logged in.</p>
+    <a class="btn btn-ghost" href="{{ url_for('logout') }}">Log out</a>
+{% endblock %}

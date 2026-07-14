@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>QR Code Authentication System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="topbar">
+        <div class="brand-bar">
+            <div class="logo-mark">Q</div>
+            <span class="mark">QR/AUTH</span>
+        </div>
+        <div class="protected-badge">
+            <span class="dot"></span>
+            TOTP protected
+        </div>
+    </div>
+
+    <div class="shell">
+        <div class="visual-panel">
+            <div class="eyebrow">{% block eyebrow %}{% endblock %}</div>
+            <h1>{% block headline %}{% endblock %}</h1>
+            <p class="visual-sub">{% block subtext %}{% endblock %}</p>
+            {% block steps %}{% endblock %}
+        </div>
+
+        <div class="card">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="flash">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</body>
+</html>

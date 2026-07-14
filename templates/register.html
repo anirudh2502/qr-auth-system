@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block eyebrow %}CREATE ACCOUNT{% endblock %}
+{% block headline %}Set up your <span class="grad">secure login.</span>{% endblock %}
+{% block subtext %}Choose a username and password now. You'll link an authenticator app to your account in the next step.{% endblock %}
+
+{% block steps %}
+<div class="steps">
+    <div class="step">
+        <div class="num">1</div>
+        <div>
+            <p class="step-title">Enter credentials</p>
+            <p class="step-desc">Pick a username and a strong password.</p>
+        </div>
+    </div>
+    <div class="step">
+        <div class="num">2</div>
+        <div>
+            <p class="step-title">Link your authenticator</p>
+            <p class="step-desc">We'll show you a QR code to scan next.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+    <div class="card-icon">&#8599;</div>
+    <h2>Create account</h2>
+    <p>Set a username and password to get started.</p>
+    <form method="POST">
+        <label class="field-label" for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="yourname" required autofocus>
+
+        <label class="field-label" for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter a password" required>
+
+        <button type="submit">Continue &rarr;</button>
+    </form>
+    <div class="card-footer">Already have an account? <a href="{{ url_for('login') }}">Log in</a></div>
+{% endblock %}

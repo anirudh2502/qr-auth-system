@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block eyebrow %}PASSWORD + AUTHENTICATOR{% endblock %}
+{% block headline %}Sign in with <span class="grad">confidence.</span>{% endblock %}
+{% block subtext %}Your password is only the first layer. A rotating six-digit code keeps your account protected even if the password is exposed.{% endblock %}
+
+{% block steps %}
+<div class="steps">
+    <div class="step">
+        <div class="num">1</div>
+        <div>
+            <p class="step-title">Enter credentials</p>
+            <p class="step-desc">We securely verify your password.</p>
+        </div>
+    </div>
+    <div class="step">
+        <div class="num">2</div>
+        <div>
+            <p class="step-title">Confirm the code</p>
+            <p class="step-desc">Use Google Authenticator, Authy, or Microsoft Authenticator.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+    <div class="card-icon">&#8599;</div>
+    <h2>Welcome back</h2>
+    <p>Use your registered account to continue.</p>
+    <form method="POST">
+        <label class="field-label" for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="yourname" required autofocus>
+
+        <label class="field-label" for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+        <button type="submit">Continue securely &rarr;</button>
+    </form>
+    <div class="card-footer">New here? <a href="{{ url_for('register') }}">Create an account</a></div>
+{% endblock %}

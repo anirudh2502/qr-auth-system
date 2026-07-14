@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block eyebrow %}VERIFY IT'S YOU{% endblock %}
+{% block headline %}Enter your <span class="grad">rotating code.</span>{% endblock %}
+{% block subtext %}Codes refresh every 30 seconds. Open your authenticator app and enter whatever it's currently showing for this account.{% endblock %}
+
+{% block content %}
+    <h2>Enter your code</h2>
+    <p>Verifying <b>{{ username }}</b></p>
+
+    <form method="POST" id="otp-form">
+        <input type="text" name="otp" placeholder="000000" maxlength="6" inputmode="numeric" pattern="[0-9]*" required autofocus>
+
+        <div class="totp-timer">
+            <div class="totp-timer-track">
+                <div class="totp-timer-fill" id="totp-fill"></div>
+            </div>
+            <div class="totp-timer-label">
+                <span>CODE REFRESHES IN</span>
+                <span id="totp-seconds">--s</span>
+            </div>
+        </div>
+
+        <button type="submit">Verify &amp; continue</button>
+    </form>
+
+    <script>
+        (function () {
+            var fill = document.getElementById('totp-fill');
+            var label = document.getElementById('totp-seconds');
+            var STEP = 30;
+
+            function tick() {
+                var now = Math.floor(Date.now() / 1000);
+                var elapsed = now % STEP;
+                var remaining = STEP - elapsed;
+                var pct = (remaining / STEP) * 100;
+
+                fill.style.width = pct + '%';
+                label.textContent = remaining + 's';
+
+                if (remaining <= 5) {
+                    fill.style.backgroundColor = 'var(--danger)';
+                } else if (remaining <= 12) {
+                    fill.style.backgroundColor = '#F5C563';
+                } else {
+                    fill.style.backgroundColor = 'var(--success)';
+                }
+            }
+
+            tick();
+            setInterval(tick, 1000);
+        })();
+    </script>
+{% endblock %}
