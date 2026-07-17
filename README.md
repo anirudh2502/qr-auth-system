@@ -1,4 +1,5 @@
 QR Code Authentication System:- A full-stack two-factor authentication system built with Flask and MySQL, featuring TOTP-based verification, QR code account linking, and a secure session-based login flow.
+It is a system that is used to log in or verify identity using not just a password but also a unique QR Code provided to each user by the system, that is validated/authenticated using an authenticator app (usually scanned using our mobile phones). 
 
 Features:-
 Two-factor login using time-based one-time passwords (TOTP), the same mechanism used by Google, GitHub, and banking apps.
